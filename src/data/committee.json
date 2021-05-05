@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name" : "Aharon Katsenelson 11",
+        "bilding": "11",
+        "address" : "Aharon Katsenelson"
+    },
+    {
+        "id": 2,
+        "name" : "Tabachnik 11",
+        "bilding": "11",
+        "address" : "Tabachnik"
+    }
+]
