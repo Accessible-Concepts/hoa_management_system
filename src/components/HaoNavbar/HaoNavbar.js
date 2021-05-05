@@ -1,15 +1,20 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 
-function HaoNavbar(props) {
+
+function HaoNavbar({activeUser, onLogout}) {
     return (
         <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">HOA System</Navbar.Brand>
+        <Navbar.Brand href="#/">HOA System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-            <Nav.Link href="#/login">Login</Nav.Link>
-            <Nav.Link href="#/signup">Signup</Nav.Link>
+                {activeUser ? <Nav.Link href="#/dashboard">Dashboard</Nav.Link> : null}
+            </Nav>
+            <Nav className="ml-auto">
+                {!activeUser ? <Nav.Link href="#/login">Login</Nav.Link> : null}
+                {!activeUser ? <Nav.Link href="#/signup">Signup</Nav.Link> : null}
+                {activeUser ? <Nav.Link href="#/" onClick={() => onLogout()}>Logout</Nav.Link> : null}
             </Nav>
         </Navbar.Collapse>
         </Navbar>    
