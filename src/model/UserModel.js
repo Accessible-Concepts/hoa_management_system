@@ -6,7 +6,7 @@ export default class UserModel {
         this.lname = plainUser.lname;
         this.email = plainUser.email;
         this.#pwd = plainUser.pwd;
-        this.role = plainUser.plainUser
+        this.role = plainUser.role
     }
 
     login(email, pwd) {

@@ -1,14 +1,14 @@
 [
     {
-        "id": 1,
-        "name" : "Aharon Katsenelson 11",
-        "bilding": "11",
-        "address" : "Aharon Katsenelson"
+        "id": "1",
+        "name" : "Aharon Katsenelson 11",   
+        "address" : "Aharon Katsenelsonc 11",
+        "city": "Petah Tikva"
     },
     {
-        "id": 2,
-        "name" : "Tabachnik 11",
-        "bilding": "11",
-        "address" : "Tabachnik"
+        "id": "2",
+        "name" : "Tabachnik 12",
+        "address" : "Tabachnik 12",
+        "city": "Petah Tikva"
     }
 ]

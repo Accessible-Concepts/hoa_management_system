@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "fname": "Nir",
-        "lname": "Channes",
+        "fname": "Olga",
+        "lname": "P",
         "email": "olgap@olgap.com",
         "pwd":  "123",
         "role": true

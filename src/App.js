@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HashRouter, Switch, Route } from 'react-router-dom';
@@ -6,23 +6,41 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import SignupPage from './pages/SignupPage/SignupPage';
+import SignupuserPag from './pages/SignupPage/SignupuserPag.js';
 import HaoNavbar from './components/HaoNavbar/HaoNavbar';
 import usersJSON from './data/users.json';
 import recipesJSON from './data/committee.json';
 import UserModel from './model/UserModel';
 import CommitteeModel from './model/CommitteeModel';
+import NewHaoModal from './components/NewHaoModal/NewHaoModal';
 
 import { useState } from 'react';
 
 function App() {
 
   const [users, setUsers] = useState(usersJSON.map(plainUser => new UserModel(plainUser)));
-  const [committee, setCommittee] = useState(recipesJSON.map(plainCommittee => new CommitteeModel(plainCommittee)));
-  //const [activeUser, setActiveUser] = useState(users[0]);
+  const [committees, setCommittee] = useState(recipesJSON.map(plainCommittee => new CommitteeModel(plainCommittee)));
+  const [activeUser, setActiveUser] = useState(null);
+  const [activeCommittees, setActiveCommittees] = useState(null);
 
-    const [activeUser, setActiveUser] = useState(null);
+  const [showNewHaoModal, setShowNewHaoModal] = useState(null); 
+  
+  function addCommittee( name, address,  city) {
+    let id = committees.length+1;
+    //let newCommittee=new CommitteeModel(id, name, address,  city);
+    let newCommittee=new CommitteeModel({id, name, address,  city});
+    setCommittee(committees.concat(newCommittee));
+    console.log(committees);
+    setActiveCommittees(newCommittee);
+  }
+  function addUser(id, fname, lname, email, pwd, role) {
+    const newUser = new UserModel({id, fname, lname, email, pwd, role});
 
-    
+    //let newUser=new UserModel(id, fname, lname, email, pwd, role);
+    setUsers(users.concat(newUser));
+    setActiveUser(newUser);
+    console.log(users);
+  }  
 
   return (
     <>
@@ -30,19 +48,23 @@ function App() {
         <Switch>
           <Route exact path="/" ><HaoNavbar/><HomePage/></Route>
            <Route exact path="/login"><LoginPage activeUser={activeUser} users={users} onLogin={user => setActiveUser(user)}/></Route> 
-          <Route exact path="/signup"><SignupPage/></Route>
+          <Route exact path="/signup"><SignupPage  activeCommittees={activeCommittees} onNewCommittee={addCommittee} /></Route>
+          <Route exact path="/Signupuser"><SignupuserPag  activeCommittees={activeCommittees} activeUser={activeUser} onLogin={user => setActiveUser(user)}  onNewUser={addUser}/></Route>
+
+          
           {/* <Route exact path="/dashboard"><HaoNavbar/><DashboardPage/></Route> */}
           <Route exact path="/dashboard">
-            <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)}/>
+            <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
             <DashboardPage 
               activeUser={activeUser} 
-              recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}
+              recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}   
              />
           </Route>
           
          
         </Switch>
       </HashRouter>
+      <NewHaoModal show={showNewHaoModal} onClose={() => setShowNewHaoModal(false)} />
     </>
   );
 }

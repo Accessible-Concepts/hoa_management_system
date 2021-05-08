@@ -7,28 +7,26 @@ import { Redirect } from 'react-router';
 import CommitteeModel from '../../model/CommitteeModel';
 
 
-function SignupPage({ activeCommittees, onNewCommittee}) {
+function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
     const [showSignupError, setShowSignupError] = useState(false);
-    const [cname, setCname] = useState("");
-    const [caddress, setCaddress] = useState("");
-    const [ccity, setCcity] = useState("");
-    
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
 
-     if (activeCommittees) {
-         return <Redirect to="/Signupuser"/>
-     }
+    if (activeUser) {
+        return <Redirect to="/dashboard"/>
+    }
 
     async function signup(e) {
         e.preventDefault();
-        // validation code is missing here...
-        if(cname.length > 0  && caddress.length > 0  && ccity.length > 0  ){
-            let role =true;
-            let newCommittee=onNewCommittee(cname, caddress,  ccity);      
+       
+        if(fname.length > 0  && lname.length > 0  && email.length > 0  && pwd.length > 0 ){
+        let role =true;
+        let id = activeCommittees.id
+        let newUser=new onNewUser(id, fname, lname, email, pwd, role);
+        
         }
         else{
             setShowSignupError(true);
@@ -36,18 +34,7 @@ function SignupPage({ activeCommittees, onNewCommittee}) {
         
     }
 
-
-    // function clearForm() {
-    //     setCname("");
-    //     setCaddress("");
-    //     setCcity("");
-
-    //     setEmail("");
-    //     setPwd("");
-    //     setFname("");
-    //     setLname("");
-    // }
-    
+  
 
 
     return (<>
@@ -57,24 +44,7 @@ function SignupPage({ activeCommittees, onNewCommittee}) {
             <p>Please fill the follwoing detais</p>
             {showSignupError ? <Alert variant="danger">Error in Sign Up!</Alert> : null}
             <Form onSubmit={signup}>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Committee Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Committee Name" value={cname} onChange={e => setCname(e.target.value)} />
-                </Form.Group>
-              
                 <Form.Row>
-                    <Form.Group as={Col} controlId="formGridAddress">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Committee Address" value={caddress} onChange={e => setCaddress(e.target.value)}/>
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridCity">
-                    <Form.Label>Committee City</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Committee City" value={ccity} onChange={e => setCcity(e.target.value)}/>
-                    </Form.Group>
-                </Form.Row>
-
-                {/* <Form.Row>
                     <Form.Group as={Col} controlId="formGridFirstName">
                     <Form.Label>First Name of Committee Member</Form.Label>
                     <Form.Control type="text" placeholder="First Name" value={fname} onChange={e => setFname(e.target.value)} />
@@ -96,9 +66,9 @@ function SignupPage({ activeCommittees, onNewCommittee}) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={pwd} onChange={e => setPwd(e.target.value)} />
                     </Form.Group>
-                </Form.Row> */}
+                </Form.Row>
                 
-                <Button variant="success" type="submit" block> Next</Button>
+                <Button variant="success" type="submit" block> Signup</Button>
             </Form>
         </div>
    </>
@@ -106,4 +76,4 @@ function SignupPage({ activeCommittees, onNewCommittee}) {
     );
 }
 
-export default SignupPage;
+export default SignupuserPag;
