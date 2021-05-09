@@ -8,6 +8,7 @@ export default class UserModel {
         this.#pwd = plainUser.pwd;
         this.role = plainUser.role;
         this.img = plainUser.img;
+        this.userId = plainUser.userId;
     }
 
     login(email, pwd) {

@@ -17,7 +17,7 @@ function HomePage(props) {
             <Container>
                     <Row>
                         <Col>
-                            <Card>
+                            <Card className="card-p">
                                 <Card.Header> <Card.Img variant="top" src={img_1} /></Card.Header>              
                                 <Card.Body>
                                     <Card.Title>Managers Who Truly Care</Card.Title>
@@ -35,7 +35,7 @@ function HomePage(props) {
                     </Row>
                     <Row>
                         <Col>
-                            <Card>
+                        <Card className="card-p">
                                 <Card.Header> <Card.Img variant="top" src={img_2} /></Card.Header>
                                 <Card.Body>
                                     <Card.Title>High-Rise Buildings</Card.Title>
@@ -52,7 +52,7 @@ function HomePage(props) {
                     </Row>
                     <Row>
                         <Col>
-                            <Card>
+                        <Card className="card-p">
                                 <Card.Header> <Card.Img variant="top" src={img_3} /></Card.Header>
                                 <Card.Body>
                                     <Card.Title>Communities & HOAs</Card.Title>

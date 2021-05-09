@@ -29,8 +29,8 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
        
         if(name.length > 0  && apartment.length > 0  && email.length > 0  && pwd.length > 0 ){
             let role =true;
-            let id = activeCommittees.id
-            let newUser=new onNewUser(id, name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : URL.createObjectURL(avatar));      
+            let userId = activeCommittees.id
+            let newUser=new onNewUser( name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : URL.createObjectURL(avatar), userId);      
         }
         else{
             setShowSignupError(true);

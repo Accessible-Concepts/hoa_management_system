@@ -7,12 +7,15 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import SignupuserPag from './pages/SignupPage/SignupuserPag.js';
+import TenantsPage from './pages/TenantsPage/TenantsPage.js';
+
+
 import HaoNavbar from './components/HaoNavbar/HaoNavbar';
 import usersJSON from './data/users.json';
 import recipesJSON from './data/committee.json';
 import UserModel from './model/UserModel';
 import CommitteeModel from './model/CommitteeModel';
-import NewHaoModal from './components/NewHaoModal/NewHaoModal';
+// import NewHaoModal from './components/NewHaoModal/NewHaoModal';
 
 import { useState } from 'react';
 
@@ -34,8 +37,9 @@ function App() {
   }
  
 
-  function addUser(id, name, apartment, email, pwd, role, img) {
-    const newUser = new UserModel({id, name, apartment, email, pwd, role, img});
+  function addUser( name, apartment, email, pwd, role, img, userId) {
+    let id= users[users.length - 1].id + 1;
+    const newUser = new UserModel({id, name, apartment, email, pwd, role, img, userId});
     setUsers(users.concat(newUser));
     setActiveUser(newUser);
     console.log(users);
@@ -50,30 +54,24 @@ function App() {
           <Route exact path="/signup"><HaoNavbar/><SignupPage  activeCommittees={activeCommittees} onNewCommittee={addCommittee} /></Route>
           <Route exact path="/Signupuser"><HaoNavbar/><SignupuserPag  activeCommittees={activeCommittees} activeUser={activeUser} onLogin={user => setActiveUser(user)}  onNewUser={addUser}/></Route>
 
-          
-          {/* <Route exact path="/dashboard"><HaoNavbar/><DashboardPage/></Route> */}
           <Route exact path="/dashboard">
             <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
-            <DashboardPage 
-              activeUser={activeUser} 
-              recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}   
-             />
+            <DashboardPage activeUser={activeUser} recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}/>     
           </Route>
 
           <Route exact path="/tenants">
             <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
-            <DashboardPage 
+            <TenantsPage 
               activeUser={activeUser} 
-              activeCommittees={activeCommittees}
-              recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}   
+              tenants={activeUser ? users.filter(user => user.userId === activeUser.userId) : []}   
              />
           </Route>
           
          
         </Switch>
       </HashRouter>
-      <NewHaoModal show={showNewHaoModal} onClose={() => setShowNewHaoModal(false)} />
-    </>
+      {/* <NewHaoModal show={showNewHaoModal} onClose={() => setShowNewHaoModal(false)} />*/}
+    </> 
   );
 }
 
