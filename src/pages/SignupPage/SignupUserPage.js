@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, Col, Row, Image, Spinner, Alert, Modal,  } from 'react-bootstrap';
-import './SignupuserPag.css';
+import './SignupUserPage.css';
 import UserModel from '../../model/UserModel';
 import { Redirect } from 'react-router';
 import CommitteeModel from '../../model/CommitteeModel';
 import avatar from '../../img/avatar.png'
 
 
-function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
+function SignupUserPage({ activeCommittees, activeUser, onLogin, onNewUser}) {
     const [showSignupError, setShowSignupError] = useState(false);
 
     const [email, setEmail] = useState("");
@@ -95,4 +95,4 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
     );
 }
 
-export default SignupuserPag;
+export default SignupUserPage;

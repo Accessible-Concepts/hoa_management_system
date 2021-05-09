@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import SignupPage from './pages/SignupPage/SignupPage';
-import SignupuserPag from './pages/SignupPage/SignupuserPag.js';
+import SignupUserPage from './pages/SignupPage/SignupUserPage.js';
 import TenantsPage from './pages/TenantsPage/TenantsPage.js';
 
 
@@ -15,7 +15,7 @@ import usersJSON from './data/users.json';
 import recipesJSON from './data/committee.json';
 import UserModel from './model/UserModel';
 import CommitteeModel from './model/CommitteeModel';
-// import NewHaoModal from './components/NewHaoModal/NewHaoModal';
+
 
 import { useState } from 'react';
 
@@ -26,7 +26,7 @@ function App() {
   const [activeUser, setActiveUser] = useState(null);
   const [activeCommittees, setActiveCommittees] = useState(null);
 
-  const [showNewHaoModal, setShowNewHaoModal] = useState(null); 
+  
   
   function addCommittee( name, address,  city) {
     let id = committees.length+1;
@@ -38,12 +38,27 @@ function App() {
  
 
   function addUser( name, apartment, email, pwd, role, img, userId) {
-    let id= users[users.length - 1].id + 1;
+    let id
+    if(users.length ==0){id =1}else{
+      id = users[users.length - 1].id + 1;
+    }
+    
     const newUser = new UserModel({id, name, apartment, email, pwd, role, img, userId});
     setUsers(users.concat(newUser));
-    setActiveUser(newUser);
+    if(role !==false){
+      setActiveUser(newUser);
+    }
     console.log(users);
+    console.log("activeUser " +activeUser.userId);
   }  
+
+  function DeleteUser(usertodelete){   
+      var array = [...users];
+      array = array.filter(user => user.id !== usertodelete.id);
+      setUsers(array);
+      console.log(users);
+      
+  }
 
   return (
     <>
@@ -52,7 +67,7 @@ function App() {
           <Route exact path="/" ><HaoNavbar/><HomePage/></Route>
            <Route exact path="/login"><HaoNavbar/><LoginPage activeUser={activeUser} users={users} onLogin={user => setActiveUser(user)}/></Route> 
           <Route exact path="/signup"><HaoNavbar/><SignupPage  activeCommittees={activeCommittees} onNewCommittee={addCommittee} /></Route>
-          <Route exact path="/Signupuser"><HaoNavbar/><SignupuserPag  activeCommittees={activeCommittees} activeUser={activeUser} onLogin={user => setActiveUser(user)}  onNewUser={addUser}/></Route>
+          <Route exact path="/Signupuser"><HaoNavbar/><SignupUserPage  activeCommittees={activeCommittees} activeUser={activeUser} onLogin={user => setActiveUser(user)}  onNewUser={addUser}/></Route>
 
           <Route exact path="/dashboard">
             <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
@@ -64,13 +79,15 @@ function App() {
             <TenantsPage 
               activeUser={activeUser} 
               tenants={activeUser ? users.filter(user => user.userId === activeUser.userId) : []}   
+              onNewTenant={addUser}
+              onDeleteTenant={DeleteUser}
              />
           </Route>
           
          
         </Switch>
       </HashRouter>
-      {/* <NewHaoModal show={showNewHaoModal} onClose={() => setShowNewHaoModal(false)} />*/}
+      
     </> 
   );
 }
