@@ -19,3 +19,12 @@
 .card-body div {
     margin: 10px;
 }
+
+
+.card-body div:last-child {
+    flex-grow: 3;
+}
+
+.card-body Button {
+    float: right;
+}

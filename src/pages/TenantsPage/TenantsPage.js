@@ -36,7 +36,7 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant}) {
     $: filtertenants = filtertenants(tenants, filter);
 
     return (
-        <div className="p-tenants">  
+        <Container className="p-tenants">  
           <div className="heading">
           <br/> 
           <input onChange={e => FilterType(e.target.value)} className="form-control rounded" placeholder = "Filter"></input>
@@ -53,7 +53,7 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant}) {
                     </div>
                 )}   
              <NewTenantModal userId ={activeUser.userId} show={showNewTenantModal} onClose={() => setShowNewTenantModal(false)} onCreate={onNewTenant}/>  
-        </div>
+        </Container>
    );
 }
 export default TenantsPage;

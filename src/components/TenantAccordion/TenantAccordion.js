@@ -22,10 +22,12 @@ function TenantAccordion({tenant, onDelete}) {
                             <Card.Text>Email: {tenant.email}</Card.Text>
                             <Card.Text>Apartment: {tenant.apartment}</Card.Text>
                         </div>
-                        <Button variant="link" onClick={() => onDelete(tenant)}>Delete Tenant</Button> 
-                        
+                        <div>
+                        <Button variant="primary" onClick={() => onDelete(tenant)}>Delete Tenant</Button> 
+                        </div>
                     </Card.Body>
                    
+                        
                 </Accordion.Collapse>
             </Card>
                 
