@@ -3,3 +3,7 @@
     width: 800px;
     margin: 50px auto; 
 }
+
+.p-signup > div{
+    margin-bottom: 50px;
+}

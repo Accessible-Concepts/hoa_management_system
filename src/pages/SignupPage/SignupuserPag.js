@@ -12,8 +12,8 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
 
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
-    const [fname, setFname] = useState("");
-    const [lname, setLname] = useState("");
+    const [name, setName] = useState("");
+    const [apartment, setApartment] = useState("");
 
     if (activeUser) {
         return <Redirect to="/dashboard"/>
@@ -22,10 +22,10 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
     async function signup(e) {
         e.preventDefault();
        
-        if(fname.length > 0  && lname.length > 0  && email.length > 0  && pwd.length > 0 ){
+        if(name.length > 0  && apartment.length > 0  && email.length > 0  && pwd.length > 0 ){
         let role =true;
         let id = activeCommittees.id
-        let newUser=new onNewUser(id, fname, lname, email, pwd, role);
+        let newUser=new onNewUser(id, name, apartment, email, pwd, role);
         
         }
         else{
@@ -38,21 +38,22 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
 
 
     return (<>
-        <h1>Create a Committee</h1>
+       
         <div className="p-signup">
-            
+        <h2>Create a Committee</h2>
             <p>Please fill the follwoing detais</p>
             {showSignupError ? <Alert variant="danger">Error in Sign Up!</Alert> : null}
             <Form onSubmit={signup}>
+
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridFirstName">
-                    <Form.Label>First Name of Committee Member</Form.Label>
-                    <Form.Control type="text" placeholder="First Name" value={fname} onChange={e => setFname(e.target.value)} />
+                    <Form.Label> Name of Committee Member</Form.Label>
+                    <Form.Control type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridLastName">
-                    <Form.Label>Last Name of Committee Member</Form.Label>
-                    <Form.Control type="text" placeholder="Last Name" value={lname} onChange={e => setLname(e.target.value)} />
+                    <Form.Label>Apartment of Committee Member</Form.Label>
+                    <Form.Control type="text" placeholder="Apartment" value={apartment} onChange={e => setApartment(e.target.value)} />
                     </Form.Group>
                 </Form.Row>
 

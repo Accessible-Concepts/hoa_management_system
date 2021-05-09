@@ -27,16 +27,15 @@ function App() {
   
   function addCommittee( name, address,  city) {
     let id = committees.length+1;
-    //let newCommittee=new CommitteeModel(id, name, address,  city);
     let newCommittee=new CommitteeModel({id, name, address,  city});
     setCommittee(committees.concat(newCommittee));
     console.log(committees);
     setActiveCommittees(newCommittee);
   }
-  function addUser(id, fname, lname, email, pwd, role) {
-    const newUser = new UserModel({id, fname, lname, email, pwd, role});
+ 
 
-    //let newUser=new UserModel(id, fname, lname, email, pwd, role);
+  function addUser(id, name, apartment, email, pwd, role) {
+    const newUser = new UserModel({id, name, apartment, email, pwd, role});
     setUsers(users.concat(newUser));
     setActiveUser(newUser);
     console.log(users);
@@ -47,9 +46,9 @@ function App() {
       <HashRouter>
         <Switch>
           <Route exact path="/" ><HaoNavbar/><HomePage/></Route>
-           <Route exact path="/login"><LoginPage activeUser={activeUser} users={users} onLogin={user => setActiveUser(user)}/></Route> 
-          <Route exact path="/signup"><SignupPage  activeCommittees={activeCommittees} onNewCommittee={addCommittee} /></Route>
-          <Route exact path="/Signupuser"><SignupuserPag  activeCommittees={activeCommittees} activeUser={activeUser} onLogin={user => setActiveUser(user)}  onNewUser={addUser}/></Route>
+           <Route exact path="/login"><HaoNavbar/><LoginPage activeUser={activeUser} users={users} onLogin={user => setActiveUser(user)}/></Route> 
+          <Route exact path="/signup"><HaoNavbar/><SignupPage  activeCommittees={activeCommittees} onNewCommittee={addCommittee} /></Route>
+          <Route exact path="/Signupuser"><HaoNavbar/><SignupuserPag  activeCommittees={activeCommittees} activeUser={activeUser} onLogin={user => setActiveUser(user)}  onNewUser={addUser}/></Route>
 
           
           {/* <Route exact path="/dashboard"><HaoNavbar/><DashboardPage/></Route> */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import './LoginPage.css'
 
@@ -32,30 +32,38 @@ function LoginPage({activeUser, users, onLogin}) {
     }
 
     return (
+        
+        
+        <Container>
         <div className="p-login">
-            <h1>Login to Committee</h1>
-            <p>or <Link to="/signup">create an account</Link></p>
+            <div> 
+                <h2>Login to Committee</h2>
+                <p>or <Link to="/signup">create an account</Link></p>
+            </div>
             {showInvalidLogin ? <Alert variant="danger">Invalid Credentials!</Alert> : null}
             <Form onSubmit={login}>
+            
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" 
                         value={email} onChange={e => setEmail(e.target.value)} />
                     <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" 
+                    <Form.Control type="password" placeholder="Enter Password" 
                         value={pwd} onChange={e => setPwd(e.target.value)} />
                 </Form.Group>
                 <Button variant="success" type="submit" block>
                     Login
                 </Button>
+               
             </Form>
         </div>
+        </Container>
+        
     );
 }
 

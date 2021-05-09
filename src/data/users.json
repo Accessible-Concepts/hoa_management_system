@@ -1,18 +1,19 @@
 [
     {
         "id": 1,
-        "fname": "Olga",
-        "lname": "Pan",
+        "name": "Olga Pan",
+        "apartment": "22",
         "email": "olgap@olgap.com",
         "pwd":  "123",
         "role": true
     },
     {
         "id": 2,
-        "fname": "John",
-        "lname": "Doe",
+        "name": "John Doe",
+        "apartment": "9",
         "email": "john@john.com",
         "pwd":  "123",
         "role": false
     }
 ]
+

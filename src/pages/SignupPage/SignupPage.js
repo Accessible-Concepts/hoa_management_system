@@ -51,10 +51,12 @@ function SignupPage({ activeCommittees, onNewCommittee}) {
 
 
     return (<>
-        <h1>Create a Committee</h1>
+        
         <div className="p-signup">
-            
-            <p>Please fill the follwoing detais</p>
+             <div> 
+                <h2>Create a Committee</h2>
+                <p>Please fill the follwoing detais</p>
+            </div> 
             {showSignupError ? <Alert variant="danger">Error in Sign Up!</Alert> : null}
             <Form onSubmit={signup}>
                 <Form.Group controlId="formBasicEmail">
