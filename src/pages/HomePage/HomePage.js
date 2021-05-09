@@ -5,6 +5,7 @@ import img_1 from '../../img/1.jpg'
 import img_2 from '../../img/22.jpg'
 import img_3 from '../../img/33.jpg'
 
+
 function HomePage(props) {
     return (
         <>
