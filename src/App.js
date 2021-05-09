@@ -34,8 +34,8 @@ function App() {
   }
  
 
-  function addUser(id, name, apartment, email, pwd, role) {
-    const newUser = new UserModel({id, name, apartment, email, pwd, role});
+  function addUser(id, name, apartment, email, pwd, role, img) {
+    const newUser = new UserModel({id, name, apartment, email, pwd, role, img});
     setUsers(users.concat(newUser));
     setActiveUser(newUser);
     console.log(users);
@@ -56,6 +56,15 @@ function App() {
             <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
             <DashboardPage 
               activeUser={activeUser} 
+              recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}   
+             />
+          </Route>
+
+          <Route exact path="/tenants">
+            <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
+            <DashboardPage 
+              activeUser={activeUser} 
+              activeCommittees={activeCommittees}
               recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}   
              />
           </Route>

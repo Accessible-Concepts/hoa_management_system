@@ -6,7 +6,8 @@ export default class UserModel {
         this.apartment = plainUser.apartment;
         this.email = plainUser.email;
         this.#pwd = plainUser.pwd;
-        this.role = plainUser.role
+        this.role = plainUser.role;
+        this.img = plainUser.img;
     }
 
     login(email, pwd) {

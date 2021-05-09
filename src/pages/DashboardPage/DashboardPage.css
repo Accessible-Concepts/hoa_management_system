@@ -1,0 +1,15 @@
+ 
+ .p-home {
+    /* width: 90%;  */
+    margin: 8px
+  }
+  .row{
+    justify-content: center;
+
+  }
+  .box50 {
+    flex-basis: 50%;
+    height: 300px;
+    border: solid;
+  }
+   

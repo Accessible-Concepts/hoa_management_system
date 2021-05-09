@@ -1,12 +1,23 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Button, Card, Row, Col } from 'react-bootstrap';
+import './DashboardPage.css';
 
 function DashboardPage(props) {
     return (
-        <Container className="p-home">
-            <h1 className="display-1">hoa management solutions</h1>
-            <p>Dashboard Page</p>
-        </Container>
+        <div className="p-home">
+           <Row>
+                <Col className="box50">
+                    <h3>New Reported Issues</h3>
+                </Col>
+                <Col className="box50">
+                    <h3>Overdue Issues</h3>
+                    <div>There are no overdue issues</div>
+                </Col>
+           </Row>
+           <Row>
+                <h3>Active Voting Percentage</h3>
+           </Row>
+        </div>
     );
 }
 

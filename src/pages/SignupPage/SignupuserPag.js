@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, Col, Row, Image, Spinner, Alert, Modal,  } from 'react-bootstrap';
-import './SignupPage.css';
+import './SignupuserPag.css';
 import UserModel from '../../model/UserModel';
 import { Redirect } from 'react-router';
 import CommitteeModel from '../../model/CommitteeModel';
+import avatar from '../../img/avatar.png'
 
 
 function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
@@ -14,27 +15,35 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
     const [pwd, setPwd] = useState("");
     const [name, setName] = useState("");
     const [apartment, setApartment] = useState("");
+    const [img, setImg] = useState(null);
 
     if (activeUser) {
         return <Redirect to="/dashboard"/>
+    }
+    if(!activeCommittees){
+        return <Redirect to="/signup"/>
     }
 
     async function signup(e) {
         e.preventDefault();
        
         if(name.length > 0  && apartment.length > 0  && email.length > 0  && pwd.length > 0 ){
-        let role =true;
-        let id = activeCommittees.id
-        let newUser=new onNewUser(id, name, apartment, email, pwd, role);
-        
+            let role =true;
+            let id = activeCommittees.id
+            let newUser=new onNewUser(id, name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : URL.createObjectURL(avatar));      
         }
         else{
             setShowSignupError(true);
         }
-        
     }
 
-  
+    function handleFileChange(e) {
+        if (e.target.files.length === 1) {
+            setImg(e.target.files[0]);
+        } else {
+            setImg(avatar);
+        }
+    }
 
 
     return (<>
@@ -68,7 +77,16 @@ function SignupuserPag({ activeCommittees, activeUser, onLogin, onNewUser}) {
                     <Form.Control type="password" placeholder="Password" value={pwd} onChange={e => setPwd(e.target.value)} />
                     </Form.Group>
                 </Form.Row>
-                
+
+                <Form.Group as={Row} controlId="formHorizontalImg">
+                        <Form.Label column sm={3}>
+                            Recipe Image
+                        </Form.Label>
+                        <Col sm={9}>
+                            <Form.Control type="file" accept="image/*" onChange={handleFileChange}/>
+                        </Col>
+                    </Form.Group>
+                    <Image src={img ? URL.createObjectURL(img) : ""}/>
                 <Button variant="success" type="submit" block> Signup</Button>
             </Form>
         </div>
