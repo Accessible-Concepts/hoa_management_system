@@ -7,9 +7,12 @@ import NewTenantModal from '../../components/NewTenantModal/NewTenantModal';
 import { useState } from 'react';
 
 
-function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant}) {
+function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdateTenant}) {
     const [showNewTenantModal, setShowNewTenantModal] = useState(false);
     const [filter, setFilter] = useState("");
+    const [upstutus, setUpStutus] = useState(false);
+    const [uptenant, setUptenants] = useState();
+
 
     if (!activeUser) {
         return <Redirect to="/"/>
@@ -22,17 +25,15 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant}) {
         if (!filter) {
             return tenants;
         }
-
         return tenants.filter((tenant) => {
             const Name = tenant.name.toLowerCase();
             const Email = tenant.email.toLowerCase();
             const Apartment = tenant.apartment.toLowerCase();
             return (Name.includes(filter) || Email.includes(filter) ||Apartment.includes(filter));    
-        });
-        
+        });      
     };
 
-    console.log (filtertenants);
+    
     $: filtertenants = filtertenants(tenants, filter);
 
     return (
@@ -47,12 +48,25 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant}) {
                 {filtertenants.map(filtertenant => 
                     <div key={filtertenant.id}>
                          <TenantAccordion 
-                          tenant={filtertenant} 
-                          onDelete={onDeleteTenant}
+                            tenant={filtertenant} 
+                            onDelete={onDeleteTenant}
+                            onUpdate={onUpdateTenant}
+                            show= {setShowNewTenantModal} 
+                            Stutus ={setUpStutus}
+                            uptenant ={setUptenants}
+                            
                          />   
                     </div>
                 )}   
-             <NewTenantModal userId ={activeUser.userId} show={showNewTenantModal} onClose={() => setShowNewTenantModal(false)} onCreate={onNewTenant}/>  
+             <NewTenantModal 
+                userId ={activeUser.userId} 
+                show={showNewTenantModal} 
+                onClose={() => setShowNewTenantModal(false)} 
+                onCreate={onNewTenant}
+                onUpdate={onUpdateTenant}
+                status ={upstutus}
+                uptenant ={uptenant}
+                />  
         </Container>
    );
 }

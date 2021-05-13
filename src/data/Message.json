@@ -1,0 +1,32 @@
+[
+    {
+        "createdBy": 1,
+        "createdAt": "10/05/2021",
+        "title": "Closing the pool for maintanencres",
+        "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
+        "image":"",
+        "priority":  "1",
+        "comments": true,
+        "status" : true
+    },
+    {
+        "createdBy": 1,
+        "createdAt": "10/05/2021",
+        "title": "New closees in the gym",
+        "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
+        "image":"",
+        "priority":  "0",
+        "comments": true,
+        "status" : true
+    },
+    {
+        "createdBy": 1,
+        "createdAt": "10/05/2021",
+        "title": "Closing the pool for maintanencre3",
+        "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
+        "image":"",
+        "priority":  "0",
+        "comments": true,
+        "status" : true
+    }
+]

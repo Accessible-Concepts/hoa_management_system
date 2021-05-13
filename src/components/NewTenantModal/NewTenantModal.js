@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Button, Modal, Form, Col, Row, Image, Spinner } from 'react-bootstrap';
 import './NewTenantModal.css'
 import { Redirect } from 'react-router';
 import avatar from '../../img/avatar.png'
 
-function NewTenantModal({userId, show, onClose, onCreate} ) {
+function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, uptenant} ) {
 
-    const [email, setEmail] = useState("");
-    const [pwd, setPwd] = useState("");
-    const [name, setName] = useState("");
-    const [apartment, setApartment] = useState("");
-    const [img, setImg] = useState(null);
+    const id = userId && uptenant ? uptenant.id : undefined
 
+    const [email, setEmail] = useState(id ? uptenant.email : '');
+    const [pwd, setPwd] = useState(id ? uptenant.pwd : '')
+    const [name, setName] = useState(id ? uptenant.name : '');
+    const [apartment, setApartment] = useState(id ? uptenant.apartment : '');
+    const [img, setImg] = useState(id ? uptenant.img : '');
 
+    //  useEffect(() => {
+    //     if(id){
+    //         setEmail(uptenant.email);
+    //         setPwd(uptenant.pwd )
+    //         setName(uptenant.name );
+    //         setApartment(uptenant.apartment);
+    //         setImg(uptenant.img);
+    //         console.log(email,pwd, name, apartment, img)
+    //     }
+    // }, [email])
+        
+         
+    
+    
     function clearForm() {
         setEmail("");
         setPwd("");
@@ -27,7 +42,12 @@ function NewTenantModal({userId, show, onClose, onCreate} ) {
         clearForm();
         onClose();
     }
-
+    function updateTenant() {
+        let role =false;
+        onUpdate(name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : "", userId);
+        clearForm();
+        onClose();
+    }
     function handleFileChange(e) {
         if (e.target.files.length === 1) {
             setImg(e.target.files[0]);
@@ -36,10 +56,16 @@ function NewTenantModal({userId, show, onClose, onCreate} ) {
         }
     }
 
+    function showform() {
+        show();
+        
+    }
+
+
     return (   
     <Modal show={show} onHide={onClose} size="lg" className="c-new-recipe">
-        <Modal.Header closeButton>
-            <Modal.Title>New Tenant</Modal.Title>
+        <Modal.Header > 
+            <Modal.Title>  {status ? 'Update Tenant' : 'New Tenant'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <Form>
@@ -81,11 +107,16 @@ function NewTenantModal({userId, show, onClose, onCreate} ) {
         </Modal.Body>
         <Modal.Footer>
             <Button variant="secondary" onClick={onClose}>Cancel </Button>
-            <Button variant="primary" onClick={createTenant}> Create Tenant  </Button>
+           <Button variant="primary" onClick={status ? updateTenant : createTenant}> {status ? 'Update Tenant' : 'Create Tenant'}  </Button> 
+
+
+
         </Modal.Footer>
     </Modal>
     
     );
 }
+
+// {status? <LogoutButton onClick={this.handleLogoutClick} />: <LoginButton onClick={this.handleLoginClick} />}
 
 export default NewTenantModal;
