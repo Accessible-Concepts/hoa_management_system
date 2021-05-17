@@ -1,0 +1,31 @@
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+.avatar-img{
+    width: 150px;
+}
+.card-body{
+    display: flex;
+}
+
+.card-body div {
+    margin: 10px;
+}
+
+
+.card-body div:last-child {
+    flex-grow: 3;
+}
+
+.card-body Button {
+    float: right;
+    margin: 5px;
+}

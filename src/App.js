@@ -73,11 +73,18 @@ function App() {
     setUsers(array);
 
 }
-  function NewMessage(){
+  function addMessage(){
 
   }
 
+  function deleteMessage(){
 
+  }
+
+  function updateMessage(){
+
+  }
+  
 
 
 
@@ -106,7 +113,14 @@ function App() {
              />
           </Route>
           
-          <Route exact path="/messages">  <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} /><MessagesPage  activeUser={activeUser} onNewMessage={NewMessage} /></Route>
+          <Route exact path="/messages">  <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
+              <MessagesPage  
+                activeUser={activeUser} 
+                messages ={messages}
+                onNewMessage={addMessage} 
+                onDeleteMessage ={deleteMessage} 
+                onUpdateMessage={updateMessage} 
+                /></Route>
 
           
          

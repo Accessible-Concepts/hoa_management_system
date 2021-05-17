@@ -17,6 +17,7 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
     if (!activeUser) {
         return <Redirect to="/"/>
     }
+    
     function FilterType(event){
         setFilter(event);
    }
