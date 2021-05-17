@@ -12,18 +12,24 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
     const [pwd, setPwd] = useState(id ? uptenant.pwd : '')
     const [name, setName] = useState(id ? uptenant.name : '');
     const [apartment, setApartment] = useState(id ? uptenant.apartment : '');
-    const [img, setImg] = useState(id ? uptenant.img : '');
+    const [img, setImg] = useState(id ? uptenant.img : avatar);
 
-    //  useEffect(() => {
-    //     if(id){
-    //         setEmail(uptenant.email);
-    //         setPwd(uptenant.pwd )
-    //         setName(uptenant.name );
-    //         setApartment(uptenant.apartment);
-    //         setImg(uptenant.img);
-    //         console.log(email,pwd, name, apartment, img)
-    //     }
-    // }, [email])
+     useEffect(() => {
+        if(uptenant){
+            setEmail(uptenant.email);
+            setPwd(uptenant.pwd )
+            setName(uptenant.name );
+            setApartment(uptenant.apartment);
+            setImg(uptenant.img);
+            console.log(email,pwd, name, apartment, img)
+        }else{
+            setEmail("");
+            setPwd("")
+            setName("");
+            setApartment("");
+            setImg("");
+        }
+    }, [uptenant])
         
          
     
@@ -44,15 +50,23 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
     }
     function updateTenant() {
         let role =false;
-        onUpdate(name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : "", userId);
+        let id = uptenant.id;
+        let image ="";
+        if(img){
+            image=URL.createObjectURL(img)
+        }
+        onUpdate({id, name, apartment, email, pwd, role, img, userId});
         clearForm();
+        uptenant=null;
         onClose();
     }
+
+
     function handleFileChange(e) {
         if (e.target.files.length === 1) {
             setImg(e.target.files[0]);
         } else {
-            setImg(null);
+            setImg(avatar);
         }
     }
 
@@ -101,8 +115,11 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
                             <Form.Control type="file" accept="image/*" onChange={handleFileChange}/>
                         </Col>
                     </Form.Group>
-                    <Image src={img ? URL.createObjectURL(img) : ""}/>
-               
+                    {/* <Image src={img ? URL.createObjectURL(img) : avatar}/> */}
+                    {(img && typeof img === 'object')?
+                    <Image  src={ URL.createObjectURL(img) }/>
+                    :
+                    <Image src={img ? img : avatar}/>}
             </Form>
         </Modal.Body>
         <Modal.Footer>

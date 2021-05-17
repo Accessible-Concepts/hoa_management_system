@@ -36,13 +36,19 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
     
     $: filtertenants = filtertenants(tenants, filter);
 
+
+    function UpdateStutus (){
+        setShowNewTenantModal(true)
+        setUpStutus(false);
+        setUptenants (false);
+    }
     return (
         <Container className="p-tenants">  
           <div className="heading">
           <br/> 
           <input onChange={e => FilterType(e.target.value)} className="form-control rounded" placeholder = "Filter"></input>
           <br/>  
-                 <Button variant="link" onClick={() => setShowNewTenantModal(true)}>New Tenant</Button>  
+                 <Button variant="link" onClick={() => UpdateStutus()}>New Tenant</Button>  
             </div>
             
                 {filtertenants.map(filtertenant => 

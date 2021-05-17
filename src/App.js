@@ -66,9 +66,10 @@ function App() {
 
   function UpdateUser(usertoupdate){ 
     var array = [...users];  
-    const index = array.findIndex(user => user.id === usertoupdate.id);
+    let  userupdate = new UserModel(usertoupdate);
+    const index = array.findIndex(user => user.id === userupdate.id);
 
-    array[index] = usertoupdate;
+    array[index] = userupdate;
     setUsers(array);
 
 }
