@@ -8,7 +8,7 @@ import NewMessageModal from '../../components/NewMessageModal/NewMessageModal';
 import { useState } from 'react';
 
 
-function MessagesPage({activeUser, messages, onNewMessage, onDeleteMessage, onUpdateMessage}) {
+function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMessage, onUpdateMessage}) {
     const [showNewMessageModal, setShowNewMessageModal] = useState(false);
     const [filter, setFilter] = useState("");
     const [upstutus, setUpStutus] = useState(false);
@@ -117,6 +117,7 @@ function MessagesPage({activeUser, messages, onNewMessage, onDeleteMessage, onUp
                         <div key={filtermessage.id}>
                             <MessageAccordion 
                                 message={filtermessage} 
+                                comments={comments}
                                 onDelete={onDeleteMessage}
                                 onUpdate={onUpdateMessage}
                                 show= {setShowNewMessageModal} 

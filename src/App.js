@@ -15,9 +15,11 @@ import HaoNavbar from './components/HaoNavbar/HaoNavbar';
 import usersJSON from './data/users.json';
 import committeeJSON from './data/committee.json';
 import messageJSON from './data/Message.json';
+import commentsJSON from './data/comments.json';
 import UserModel from './model/UserModel';
 import CommitteeModel from './model/CommitteeModel';
 import MessageModel from './model/MessageModel';
+import CommentModel from './model/CommentModel';
 
 import { useState } from 'react';
 
@@ -26,6 +28,7 @@ function App() {
   const [users, setUsers] = useState(usersJSON.map(plainUser => new UserModel(plainUser)));
   const [committees, setCommittee] = useState(committeeJSON.map(plainCommittee => new CommitteeModel(plainCommittee)));
   const [messages, setMessages] = useState(messageJSON.map(plainMessage => new MessageModel(plainMessage)));
+  const [comments, setComments] = useState(commentsJSON.map(plainComment => new CommentModel(plainComment)));
   const [activeUser, setActiveUser] = useState(null);
   const [activeCommittees, setActiveCommittees] = useState(null);
  
@@ -141,6 +144,9 @@ function App() {
                 messages ={(messages && activeUser) ? messages.filter(
                   message => 
                   message.createdBy === activeUser.userId) : []}
+                  comments ={(comments && activeUser) ? comments.filter(
+                    comment => 
+                    comment.createdBy === activeUser.userId) : []}  
                 onNewMessage={addMessage} 
                 onDeleteMessage ={deleteMessage} 
                 onUpdateMessage={updateMessage} 

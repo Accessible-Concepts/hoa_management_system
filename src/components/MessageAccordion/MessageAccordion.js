@@ -5,7 +5,7 @@ import avatar from '../../img/message.png'
 
 
 
-function MessageAccordion({message, onDelete, onUpdate, show, Stutus, upmessage}) {
+function MessageAccordion({message, comments,  onDelete, onUpdate, show, Stutus, upmessage}) {
 
     function UpdateStutus (){
         show(true);
@@ -23,6 +23,8 @@ function MessageAccordion({message, onDelete, onUpdate, show, Stutus, upmessage}
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body className="card-body">
+                   
+                         <div className="main">
                         <div>
                              <Card.Img className="avatar-img" variant="top" src={message.img? message.img : avatar}/>
                         </div>
@@ -32,9 +34,14 @@ function MessageAccordion({message, onDelete, onUpdate, show, Stutus, upmessage}
                             
                         </div>
                         <div>
-                        <Button variant="danger" onClick={() => onDelete(message)}>Delete Message</Button> 
-                        <Button variant="success" onClick={() => UpdateStutus()}>Update Message</Button> 
+                            <Button variant="danger" onClick={() => onDelete(message)}>Delete Message</Button> 
+                            <Button variant="success" onClick={() => UpdateStutus()}>Update Message</Button> 
                         </div>
+                        </div>
+                        <div className="main">
+                            sadasdasdasdasda
+                        </div>
+                   
                     </Card.Body>
                    
                         
