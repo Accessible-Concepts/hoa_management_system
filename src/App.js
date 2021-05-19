@@ -63,8 +63,7 @@ function App() {
       setUsers(array);
     }
   }
-//id, name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : "", userId
- // function UpdateUser(usertoupdate){ 
+
     function UpdateUser(id, name, apartment, email, pwd, role, img , userId){ 
     var array = [...users];  
     let  userupdate = new UserModel({id, name, apartment, email, pwd, role, img , userId});
@@ -74,16 +73,38 @@ function App() {
     setUsers(array);
 
 }
-  function addMessage(){
 
+      // this.createdBy = plainMessage.createdBy;
+        // this.createdAt = plainMessage.createdAt;
+
+  function addMessage(createdBy,  createdAt, title, detailse,  img , priority, comments, status ){
+    let id
+    if(messages.length ==0){id =1}else{
+      id = messages[messages.length - 1].id + 1;
+    } 
+    const newMessage = new MessageModel({id,  createdBy, createdAt, title, detailse,  img , priority, comments, status});
+    setMessages(messages.concat(newMessage));
+    console.log(messages);
   }
 
-  function deleteMessage(){
+  function deleteMessage(messagetodelete){
+    const confirm = window.confirm(`Are you sure you wish to delete this message"?`)
+    if (confirm) {
 
+      var array = [...messages]; 
+      array = array.filter(message => message.id !== messagetodelete.id);
+      setMessages(array);
+    }
+    console.log(messages);
   }
 
-  function updateMessage(){
+  function updateMessage(id, createdBy,  createdAt, title, detailse,  img , priority, comments, status){
+    var array = [...messages];  
+    let  messageupdate = new MessageModel({id, createdBy,  createdAt, title, detailse,  img , priority, comments, status});
+    const index = array.findIndex(message => message.id === messageupdate.id);
 
+    array[index] = messageupdate;
+    setMessages(array);
   }
   
 

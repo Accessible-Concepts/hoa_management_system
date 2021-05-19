@@ -5,9 +5,9 @@
         "createdAt": "01/01/2020",
         "title": "1 Closing the pool for maintanencres",
         "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
-        "image":"",
+        "img":"",
         "priority":  "1",
-        "comments": true,
+        "comments": "",
         "status" : true
     },
     {
@@ -16,9 +16,9 @@
         "createdAt": "10/03/1980",
         "title": "2 New closees in the gym",
         "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
-        "image":"",
+        "img":"",
         "priority":  "0",
-        "comments": true,
+        "comments": "",
         "status" : true
     },
     {
@@ -27,9 +27,9 @@
         "createdAt": "25/05/2021",
         "title": "3 Closing the pool for maintanencre3",
         "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
-        "image":"",
+        "img":"",
         "priority":  "0",
-        "comments": true,
+        "comments": "",
         "status" : true
     },
     {
@@ -38,9 +38,9 @@
         "createdAt": "25/05/2021",
         "title": "3 Closing the pool for maintanencre3",
         "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",
-        "image":"",
+        "img":"",
         "priority":  "0",
-        "comments": true,
+        "comments": "",
         "status" : true
     }
 ]

@@ -4,7 +4,7 @@ import { Container, Button, Card, Row, Col, ButtonGroup, Input } from 'react-boo
 // import { Radio, RadioGroup} from 'react-radio-group'
 import './MessagesPage.css';
 import MessageAccordion from '../../components/MessageAccordion/MessageAccordion';
-import NewMessageModal from '../../components/NewTenantModal/NewTenantModal';
+import NewMessageModal from '../../components/NewMessageModal/NewMessageModal';
 import { useState } from 'react';
 
 
@@ -126,15 +126,15 @@ function MessagesPage({activeUser, messages, onNewMessage, onDeleteMessage, onUp
                             />   
                         </div>
                     )}   
-                {/* <NewTenantModal 
+                 <NewMessageModal 
                     userId ={activeUser.userId} 
-                    show={showNewTenantModal} 
-                    onClose={() => setShowNewTenantModal(false)} 
-                    onCreate={onNewTenant}
-                    onUpdate={onUpdateTenant}
+                    show={showNewMessageModal} 
+                    onClose={() => setShowNewMessageModal(false)} 
+                    onCreate={onNewMessage}
+                    onUpdate={onUpdateMessage}
                     status ={upstutus}
-                    uptenant ={uptenant}
-                    />   */}
+                    upmessage ={upmessage}
+                    />   
 
 
 
