@@ -63,10 +63,11 @@ function App() {
       setUsers(array);
     }
   }
-
-  function UpdateUser(usertoupdate){ 
+//id, name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : "", userId
+ // function UpdateUser(usertoupdate){ 
+    function UpdateUser(id, name, apartment, email, pwd, role, img , userId){ 
     var array = [...users];  
-    let  userupdate = new UserModel(usertoupdate);
+    let  userupdate = new UserModel({id, name, apartment, email, pwd, role, img , userId});
     const index = array.findIndex(user => user.id === userupdate.id);
 
     array[index] = userupdate;
@@ -116,7 +117,9 @@ function App() {
           <Route exact path="/messages">  <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
               <MessagesPage  
                 activeUser={activeUser} 
-                messages ={messages}
+                messages ={(messages && activeUser) ? messages.filter(
+                  message => 
+                  message.createdBy === activeUser.userId) : []}
                 onNewMessage={addMessage} 
                 onDeleteMessage ={deleteMessage} 
                 onUpdateMessage={updateMessage} 

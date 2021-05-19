@@ -1,3 +1,35 @@
 .p-messages {
     display: block;
 }
+
+.heading{
+    display: flex
+}
+
+.form-control {
+    width: 70%;
+    margin-left: 10px;
+}
+
+.title {
+    width: 50%;
+    margin-left: 10px;
+}
+.check{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10px;
+}
+.form-check {
+    margin-left: 10px;
+}
+.label{
+    width: 15%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+.message-button{
+    margin: 10px;
+}

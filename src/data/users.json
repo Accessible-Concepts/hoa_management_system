@@ -6,7 +6,7 @@
         "email": "olgap@olgap.com",
         "pwd":  "123",
         "role": true,
-        "image" :"",
+        "img" :"",
         "userId": "1"
     },
     {
@@ -16,7 +16,7 @@
         "email": "john@john.com",
         "pwd":  "123",
         "role": false,
-        "image" :"",
+        "img" :"",
         "userId": "1"
     },
     {
@@ -26,7 +26,7 @@
         "email": "david@david.com",
         "pwd":  "123",
         "role": false,
-        "image" :"",
+        "img" :"",
         "userId": "1"
     }
 ]

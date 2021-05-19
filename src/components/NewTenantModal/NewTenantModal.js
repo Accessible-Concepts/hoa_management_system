@@ -55,7 +55,7 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
         if(img){
             image=URL.createObjectURL(img)
         }
-        onUpdate({id, name, apartment, email, pwd, role, img, userId});
+        onUpdate(id, name, apartment, email, pwd, role, img ? URL.createObjectURL(img) : "", userId);
         clearForm();
         uptenant=null;
         onClose();
