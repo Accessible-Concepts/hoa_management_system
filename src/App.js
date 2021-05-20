@@ -46,7 +46,7 @@ function App() {
 
   function addUser( name, apartment, email, pwd, role, img, userId) {
       let id
-      if(users.length ==0){id =1}else{
+      if(users.length ===0){id =1}else{
         id = users[users.length - 1].id + 1;
       }
       
@@ -82,7 +82,7 @@ function App() {
 
   function addMessage(createdBy,  createdAt, title, detailse,  img , priority, comments, status ){
     let id
-    if(messages.length ==0){id =1}else{
+    if(messages.length ===0){id =1}else{
       id = messages[messages.length - 1].id + 1;
     } 
     const newMessage = new MessageModel({id,  createdBy, createdAt, title, detailse,  img , priority, comments, status});
@@ -110,7 +110,22 @@ function App() {
     setMessages(array);
   }
   
+        // this.id = plainComment.id;
+        // this.messagesid = plainComment.messagesid;   
+        // this.createdBy = plainComment.createdBy;
+        // this.createdAt = plainComment.createdAt;
+        // this.detailse = plainComment.detailse;
+        // this.status = plainComment.status;
 
+  function AddComment(messagesid,  createdBy, createdAt, detailse ){
+    let id
+    if(comments.length ===0){id =1}else{
+      id = comments[comments.length - 1].id + 1;
+    } 
+    const newComment = new CommentModel({id, messagesid,  createdBy, createdAt, detailse});
+    setComments(comments.concat(newComment));
+    console.log(comments);
+  }
 
 
   return (
@@ -150,6 +165,7 @@ function App() {
                 onNewMessage={addMessage} 
                 onDeleteMessage ={deleteMessage} 
                 onUpdateMessage={updateMessage} 
+                onNewComment={AddComment}
                 /></Route>
 
           

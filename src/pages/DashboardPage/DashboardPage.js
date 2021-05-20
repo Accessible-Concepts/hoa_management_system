@@ -1,8 +1,13 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import { Container, Button, Card, Row, Col } from 'react-bootstrap';
 import './DashboardPage.css';
 
-function DashboardPage(props) {
+function DashboardPage({activeUser}) {
+    if (!activeUser) {
+        return <Redirect to="/"/>
+    }
+
     return (
         <div className="p-home">
            <Row>

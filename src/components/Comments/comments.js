@@ -1,19 +1,22 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import { Container, Button, Card, Row, Col, ButtonGroup, Input } from 'react-bootstrap';
-import './comments.css';
+import { Container, Button, Card, Row, Col, ButtonGroup, Input,Image,  Text} from 'react-bootstrap';
+import './Comments.css';
 import { useState } from 'react';
+import avatar from '../../img/avatar.png'
 
-
-function Comments({activeUser, messages, comments}) {
-   
-    
-  
+//{activeUser, messages, comments}
+function Comments({activeUser,comment}) {   
     return (
-        <Container className="p-comments">  
+        <div className="p-comments">                                                              
+            <Image styly={{"height": "25%"}} variant="top" src={activeUser.img} roundedCircle/>
+                <div> 
+                    {comment.detailse}
+                </div> 
+                                    
+                            
 
-
-        </Container>
+        </div>
     );
 }
 

@@ -6,7 +6,5 @@ export default class CommentModel {
         this.createdBy = plainComment.createdBy;
         this.createdAt = plainComment.createdAt;
         this.detailse = plainComment.detailse;
-        this.status = plainComment.status;
-       
     }
 } 

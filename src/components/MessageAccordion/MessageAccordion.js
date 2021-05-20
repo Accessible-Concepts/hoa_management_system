@@ -1,17 +1,29 @@
 import React from 'react';
 import { Accordion, Card, Button, Form } from 'react-bootstrap';
 import './MessageAccordion.css';
+import Comments from '../Comments/Comments';
 import avatar from '../../img/message.png'
+import { useState } from 'react';
 
 
-
-function MessageAccordion({message, comments,  onDelete, onUpdate, show, Stutus, upmessage}) {
+function MessageAccordion({activeUser, message, comments,  onDelete, onUpdate, show, Stutus, upmessage, onNewComment}) {
+    const [newcomment, setNewcomment] = useState("");
 
     function UpdateStutus (){
         show(true);
         Stutus(true);
         upmessage (Object.assign({}, message));
     }
+
+    function onKeyUp(event) {
+        if (event.key === "Enter") {
+            let today = new Date();
+            let createdAt=today.getDate() + "/"+ parseInt(today.getMonth()+1) +"/"+today.getFullYear(); 
+            onNewComment(message.id,  activeUser.id, createdAt, event.target.value)
+            event.target.value ="";
+            setNewcomment(true)
+        }    
+      }
 
     return (    
         <Accordion className="c-message"> 
@@ -29,8 +41,8 @@ function MessageAccordion({message, comments,  onDelete, onUpdate, show, Stutus,
                                 <Card.Img className="avatar-img" variant="top" src={message.img? message.img : avatar}/>
                             </div>
                             <div>
-                                <Card.Text>Detailse: {message.detailse}</Card.Text>
-                                <Card.Text>Priority: {message.priority==="1" ? "Information" : "Important"}</Card.Text>
+                                <Card.Text><b>Detailse:</b> {message.detailse}</Card.Text>
+                                <Card.Text><b>Priority:</b> {message.priority==="1" ? "Information" : "Important"}</Card.Text>
                                 
                             </div>
                             <div>
@@ -39,7 +51,15 @@ function MessageAccordion({message, comments,  onDelete, onUpdate, show, Stutus,
                             </div>
                         </div>
                         <div className="main">
-                        
+                         
+                         {comments.map(comment => 
+                            <div key={comment.id}>
+                                <Comments activeUser={activeUser} comment={comment}/>
+                            </div>
+                        )}  
+                          <textarea style={{"width": "100%"}} id="w3review" name="w3review" rows="3" placeholder="Add Comment" onKeyPress={e => onKeyUp(e)}>
+                         
+                        </textarea> 
                         </div>
                    
                     </Card.Body>

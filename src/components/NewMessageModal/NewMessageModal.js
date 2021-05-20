@@ -53,9 +53,9 @@ function NewMessageModal({userId, show, onClose, onCreate, onUpdate, status, upm
         let createdAt=today.getDate() + "/"+ parseInt(today.getMonth()+1) +"/"+today.getFullYear();
         let id = upmessage.id;
         let image ="";
-        if(img){
-            image=URL.createObjectURL(img)
-        }
+        // if(img){
+        //     image=URL.createObjectURL(img)
+        // }
         onUpdate(id, userId, createdAt, title, detailse,  img ? URL.createObjectURL(img) : "", priority, "", true);
         clearForm();
         upmessage=null;
