@@ -19,9 +19,9 @@ function MessageAccordion({activeUser, message, comments,  onDelete, onUpdate, s
         if (event.key === "Enter") {
             let today = new Date();
             let createdAt=today.getDate() + "/"+ parseInt(today.getMonth()+1) +"/"+today.getFullYear(); 
-            onNewComment(message.id,  activeUser.id, createdAt, event.target.value)
+            onNewComment(message.id,  activeUser.id, createdAt, event.target.value) 
+            setNewcomment(event.target.value);
             event.target.value ="";
-            setNewcomment(true)
         }    
       }
 
@@ -52,7 +52,7 @@ function MessageAccordion({activeUser, message, comments,  onDelete, onUpdate, s
                         </div>
                         <div className="main">
                          
-                         {comments.map(comment => 
+                         {comments.filter(comment => comment.messagesid ==message.id).map(comment => 
                             <div key={comment.id}>
                                 <Comments activeUser={activeUser} comment={comment}/>
                             </div>

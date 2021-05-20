@@ -1,7 +1,7 @@
 [
     {
         "id" : 1,
-        "createdBy": "1",
+        "createdBy": 1,
         "createdAt": "01/01/2020",
         "title": "Closing the pool for maintanencres",
         "detailse": "Unfortunately, the fun in the sun has to stop sometimes. Pool need to be closed for maintenance, cleaning and because it is the end of the season.",
@@ -12,7 +12,7 @@
     },
     {
         "id" : 2,
-        "createdBy": "1",
+        "createdBy": 1,
         "createdAt": "10/03/1980",
         "title": "New closures in the gym",
         "detailse": "As COVID-19 cases the governors imposed restrictions on health clubs and gyms.",
@@ -23,7 +23,7 @@
     },
     {
         "id" : 3,
-        "createdBy": "1",
+        "createdBy": 1,
         "createdAt": "25/05/2021",
         "title": "Payment for the house community",
         "detailse": "We understand you may be finding it difficult to pay your payment for the house community at this time and we want to help. You may have lost your job as a result of the coronavirus, be self-employed or have other changes of circumstances which mean you have less money coming in. Please call us on 052-1231212 for help with paying for the house community",
@@ -34,7 +34,7 @@
     },
     {
         "id" : 4,
-        "createdBy": "2",
+        "createdBy": 2,
         "createdAt": "25/05/2021",
         "title": "Closing the pool for maintanencre3",
         "detailse": "Some quick example text to build on the message title and make up the bulk of the message's content.",

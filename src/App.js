@@ -93,11 +93,14 @@ function App() {
   function deleteMessage(messagetodelete){
     const confirm = window.confirm(`Are you sure you wish to delete this message"?`)
     if (confirm) {
-
       var array = [...messages]; 
+      var array_comments = [...comments]; 
       array = array.filter(message => message.id !== messagetodelete.id);
+      array_comments = array_comments.filter(comment => comment.messagesid !== messagetodelete.id);
       setMessages(array);
+      setComments(array_comments);
     }
+
     console.log(messages);
   }
 
@@ -108,14 +111,9 @@ function App() {
 
     array[index] = messageupdate;
     setMessages(array);
+  
   }
   
-        // this.id = plainComment.id;
-        // this.messagesid = plainComment.messagesid;   
-        // this.createdBy = plainComment.createdBy;
-        // this.createdAt = plainComment.createdAt;
-        // this.detailse = plainComment.detailse;
-        // this.status = plainComment.status;
 
   function AddComment(messagesid,  createdBy, createdAt, detailse ){
     let id
@@ -126,7 +124,14 @@ function App() {
     setComments(comments.concat(newComment));
     console.log(comments);
   }
-
+  
+  function deleteComment(commenttodelete){
+      var array = [...comments]; 
+      array = array.filter(comment => comment.id !== commenttodelete.id);
+      setComments(array);
+   
+    console.log(comments);
+  }
 
   return (
     <>

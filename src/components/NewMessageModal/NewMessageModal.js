@@ -90,7 +90,7 @@ function NewMessageModal({userId, show, onClose, onCreate, onUpdate, status, upm
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Message  Priority</Form.Label>
-                        <select  onChange={(e) => setPriority(e.target.value)} className="form-control rounded">      
+                        <select  value={priority}  onChange={(e) => setPriority(e.target.value)} className="form-control rounded">      
                             <option value="1">Information</option>
                             <option value="0">Important</option>
                         </select>
