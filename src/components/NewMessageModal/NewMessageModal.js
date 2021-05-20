@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
-import { Button, Modal, Form, Col, Row, Image, Spinner } from 'react-bootstrap';
+import { Button, Modal, Form, Col, Row, Image } from 'react-bootstrap';
 import './NewMessageModal.css'
-import { Redirect } from 'react-router';
+//import { Redirect } from 'react-router';
 import avatar from '../../img/message.png'
 
         

@@ -32,3 +32,7 @@
 .main{
     flex: 50%;
 }
+
+.border{
+    border-right: solid;
+}
