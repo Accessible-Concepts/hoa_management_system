@@ -13,6 +13,12 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
     const [name, setName] = useState(id ? uptenant.name : '');
     const [apartment, setApartment] = useState(id ? uptenant.apartment : '');
     const [img, setImg] = useState(id ? uptenant.img : avatar);
+    
+    let location = window.location.href.split('/') ;
+    let href =location[4];
+    let hide=false
+    if(href !=="tenants"){hide=true}
+    console.log("NewTenantModal " +href);
 
      useEffect(() => {
         if(uptenant){
@@ -123,10 +129,8 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={onClose}>Cancel </Button>
-           <Button variant="primary" onClick={status ? updateTenant : createTenant}> {status ? 'Update Tenant' : 'Create Tenant'}  </Button> 
-
-
+            <Button  variant="secondary" onClick={onClose}>Cancel </Button>
+            <Button  variant="primary" onClick={status ? updateTenant : createTenant}> {status ? 'Update Tenant' : 'Create Tenant'}  </Button> 
 
         </Modal.Footer>
     </Modal>

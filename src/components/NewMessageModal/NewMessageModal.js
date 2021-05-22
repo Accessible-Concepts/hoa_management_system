@@ -6,9 +6,9 @@ import avatar from '../../img/message.png'
 
         
 
-function NewMessageModal({userId, show, onClose, onCreate, onUpdate, status, upmessage} ) {
+function NewMessageModal({activeUser, show, onClose, onCreate, onUpdate, status, upmessage} ) {
 
-    const id = userId && upmessage ? upmessage.id : undefined
+    const id = activeUser.userId && upmessage ? upmessage.id : undefined
 
     const [title, setTitle] = useState(id ? upmessage.title : '');
     const [detailse, setDetailse] = useState(id ? upmessage.detailse : '')
@@ -44,8 +44,8 @@ function NewMessageModal({userId, show, onClose, onCreate, onUpdate, status, upm
     function createMessage() { 
         let today = new Date();
         let createdAt=today.getDate() + "/"+ parseInt(today.getMonth()+1) +"/"+today.getFullYear();
-        onCreate(userId, createdAt, title, detailse,  img ? URL.createObjectURL(img) : "", priority, "", true );
-        clearForm();
+        onCreate(activeUser.userId, activeUser.id, createdAt,  title, detailse,  img ? URL.createObjectURL(img) : "", priority, "", true );
+        clearForm(); 
         onClose();
     }
     function updateMessage() {
@@ -56,7 +56,7 @@ function NewMessageModal({userId, show, onClose, onCreate, onUpdate, status, upm
         // if(img){
         //     image=URL.createObjectURL(img)
         // }
-        onUpdate(id, userId, createdAt, title, detailse,  img ? URL.createObjectURL(img) : "", priority, "", true);
+        onUpdate(id, activeUser.userId, activeUser.id, createdAt, title, detailse,  img ? URL.createObjectURL(img) : "", priority, "", true);
         clearForm();
         upmessage=null;
         onClose();

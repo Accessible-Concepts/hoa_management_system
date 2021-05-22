@@ -3,7 +3,13 @@ import { Accordion, Card, Button } from 'react-bootstrap';
 import './TenantAccordion.css';
 import avatar from '../../img/avatar.png'
 
-function TenantAccordion({tenant, onDelete, onUpdate, show, Stutus, uptenant}) {
+function TenantAccordion({activeUser, tenant, onDelete, onUpdate, show, Stutus, uptenant}) {
+
+    let location = window.location.href.split('/') ;
+    let href =location[4];
+    let hide=false
+    if(href !=="tenants" || activeUser.role===false){hide=true}
+    console.log(href);
 
     function UpdateStutus (){
         show(true);
@@ -29,9 +35,9 @@ function TenantAccordion({tenant, onDelete, onUpdate, show, Stutus, uptenant}) {
                             <Card.Text>Email: {tenant.email}</Card.Text>
                             <Card.Text>Apartment: {tenant.apartment}</Card.Text>
                         </div>
-                        <div>
-                        <Button variant="danger" onClick={() => onDelete(tenant)}>Delete Tenant</Button> 
-                        <Button variant="success" onClick={() => UpdateStutus()}>Update Tenant</Button> 
+                        <div className={"" + (hide ? 'hide' : '')}>
+                            <Button variant="danger" onClick={() => onDelete(tenant)}>Delete Tenant</Button> 
+                            <Button variant="success" onClick={() => UpdateStutus()}>Update Tenant</Button> 
                         </div>
                     </Card.Body>
                    

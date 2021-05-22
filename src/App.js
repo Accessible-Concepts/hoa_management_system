@@ -80,12 +80,12 @@ function App() {
       // this.createdBy = plainMessage.createdBy;
         // this.createdAt = plainMessage.createdAt;
 
-  function addMessage(createdBy,  createdAt, title, detailse,  img , priority, comments, status ){
+  function addMessage(createdBy, tenantId, createdAt, title, detailse,  img , priority, comments, status ){
     let id
     if(messages.length ===0){id =1}else{
       id = messages[messages.length - 1].id + 1;
     } 
-    const newMessage = new MessageModel({id,  createdBy, createdAt, title, detailse,  img , priority, comments, status});
+    const newMessage = new MessageModel({id,  createdBy, tenantId, createdAt, title, detailse,  img , priority, comments, status});
     setMessages(messages.concat(newMessage));
     console.log(messages);
   }
@@ -104,9 +104,9 @@ function App() {
     console.log(messages);
   }
 
-  function updateMessage(id, createdBy,  createdAt, title, detailse,  img , priority, comments, status){
+  function updateMessage(id, createdBy, tenantId, createdAt, title, detailse,  img , priority, comments, status){
     var array = [...messages];  
-    let  messageupdate = new MessageModel({id, createdBy,  createdAt, title, detailse,  img , priority, comments, status});
+    let  messageupdate = new MessageModel({id, createdBy, tenantId, createdAt, title, detailse,  img , priority, comments, status});
     const index = array.findIndex(message => message.id === messageupdate.id);
 
     array[index] = messageupdate;
@@ -115,23 +115,23 @@ function App() {
   }
   
 
-  function AddComment(messagesid,  createdBy, createdAt, detailse ){
+  function AddComment(messagesid,  createdBy, tenantId, createdAt, detailse ){
     let id
     if(comments.length ===0){id =1}else{
       id = comments[comments.length - 1].id + 1;
     } 
-    const newComment = new CommentModel({id, messagesid,  createdBy, createdAt, detailse});
+    const newComment = new CommentModel({id, messagesid,  createdBy, tenantId, createdAt, detailse});
     setComments(comments.concat(newComment));
     console.log(comments);
   }
   
-  function deleteComment(commenttodelete){
-      var array = [...comments]; 
-      array = array.filter(comment => comment.id !== commenttodelete.id);
-      setComments(array);
+  // function deleteComment(commenttodelete){
+  //     var array = [...comments]; 
+  //     array = array.filter(comment => comment.id !== commenttodelete.id);
+  //     setComments(array);
    
-    console.log(comments);
-  }
+  //   console.log(comments);
+  // }
 
   return (
     <>
@@ -144,7 +144,25 @@ function App() {
 
           <Route exact path="/dashboard">
             <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
-            <DashboardPage activeUser={activeUser} recipes={activeUser ? users.filter(user => user.userId === activeUser.id) : []}/>     
+            <DashboardPage activeUser={activeUser} 
+                Tenants={<TenantsPage 
+                    activeUser={activeUser} 
+                    tenants={activeUser ? users.filter(user => user.userId === activeUser.userId) : []}   
+                    onNewTenant={addUser}
+                    onDeleteTenant={DeleteUser}
+                    onUpdateTenant={UpdateUser}
+                />}
+                Messages ={<MessagesPage  
+                  users={users}
+                  activeUser={activeUser} 
+                  messages ={(messages && activeUser) ? messages.filter(message => message.createdBy === activeUser.userId) : []}
+                  comments ={(comments && activeUser) ? comments.filter(comment => comment.createdBy === activeUser.userId) : []}  
+                  onNewMessage={addMessage} 
+                  onDeleteMessage ={deleteMessage} 
+                  onUpdateMessage={updateMessage} 
+                  onNewComment={AddComment}
+                />}
+             />     
           </Route>
 
           <Route exact path="/tenants">
@@ -160,18 +178,16 @@ function App() {
           
           <Route exact path="/messages">  <HaoNavbar activeUser={activeUser} onLogout={() => setActiveUser(null)} />
               <MessagesPage  
-                activeUser={activeUser} 
-                messages ={(messages && activeUser) ? messages.filter(
-                  message => 
-                  message.createdBy === activeUser.userId) : []}
-                  comments ={(comments && activeUser) ? comments.filter(
-                    comment => 
-                    comment.createdBy === activeUser.userId) : []}  
-                onNewMessage={addMessage} 
-                onDeleteMessage ={deleteMessage} 
-                onUpdateMessage={updateMessage} 
-                onNewComment={AddComment}
-                /></Route>
+                  users={users}
+                  activeUser={activeUser} 
+                  messages ={(messages && activeUser) ? messages.filter(message => message.createdBy === activeUser.userId) : []}
+                  comments ={(comments && activeUser) ? comments.filter(comment => comment.createdBy === activeUser.userId) : []}  
+                  onNewMessage={addMessage} 
+                  onDeleteMessage ={deleteMessage} 
+                  onUpdateMessage={updateMessage} 
+                  onNewComment={AddComment}
+                />
+          </Route>
 
           
          

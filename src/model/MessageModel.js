@@ -2,6 +2,7 @@ export default class MessageModel {
     constructor(plainMessage) {
         this.id = plainMessage.id;
         this.createdBy = plainMessage.createdBy;
+        this.tenantId = plainMessage.tenantId;
         this.createdAt = plainMessage.createdAt;
         this.title = plainMessage.title;
         this.detailse = plainMessage.detailse;

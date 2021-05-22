@@ -33,3 +33,10 @@
 .message-button{
     margin: 10px;
 }
+
+.list{
+    margin-bottom: 50px;
+}
+.hide{
+    display: none;
+}

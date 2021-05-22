@@ -1,7 +1,7 @@
  
- .p-home {
+ .p-dashboard {
     /* width: 90%;  */
-    margin: 8px
+    margin: 30px;
   }
   .row{
     justify-content: center;
@@ -10,6 +10,28 @@
   .box50 {
     flex-basis: 50%;
     height: 300px;
-    border: solid;
+    /* border: solid; */
+    overflow: scroll;
+    padding-top: 10px;
   }
-   
+
+  .smallbox{
+    width: 29px;
+    height: 29px;
+    border: solid black;
+    border-radius: 50%!important;
+    padding-left: 6px;
+    margin-left: 5px;
+    margin-top: -7px;
+    color: red;
+    font-weight: bolder;
+  }
+  .mes_num{
+    display: flex;
+  }
+
+  issues.{
+    flex-direction: column;
+    align-content: space-around;
+    margin-top: 30px;
+  }

@@ -3,5 +3,19 @@
 }
 
 .p-comments img {
-    width: 10%;
+     width: 50%; 
+    object-fit: cover
+}
+.p-img  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+.p-text{
+    width: 80%;
+    overflow-y: scroll;
+}
+.hide{
+    display: none;
 }

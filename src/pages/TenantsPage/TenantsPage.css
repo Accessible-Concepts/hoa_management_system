@@ -1,5 +1,17 @@
 
 .p-tenants {
-   
     display: block;
+}
+
+.heading {
+    /* display: flex; */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+}
+.list{
+    margin-bottom: 50px;
+}
+.hide{
+    display: none;
 }

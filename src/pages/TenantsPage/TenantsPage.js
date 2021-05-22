@@ -13,6 +13,11 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
     const [upstutus, setUpStutus] = useState(false);
     const [uptenant, setUptenants] = useState();
 
+    let location = window.location.href.split('/') ;
+    let href =location[4];
+    let hide=false
+    if(href !=="tenants" || activeUser.role===false){hide=true}
+    console.log(href);
 
     if (!activeUser) {
         return <Redirect to="/"/>
@@ -45,16 +50,15 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
     }
     return (
         <Container className="p-tenants">  
-          <div className="heading">
-          <br/> 
-          <input onChange={e => FilterType(e.target.value)} className="form-control rounded" placeholder = "Filter"></input>
-          <br/>  
-                 <Button variant="link" onClick={() => UpdateStutus()}>New Tenant</Button>  
-            </div>
-            
+          <div className={"heading " + (hide ? 'hide' : '')}>     
+            <input onChange={e => FilterType(e.target.value)} placeholder = "Filter"></input>
+            <Button  variant="link" onClick={() => UpdateStutus()}>New Tenant</Button>  
+        </div>
+            <div className="list">
                 {filtertenants.map(filtertenant => 
                     <div key={filtertenant.id}>
                          <TenantAccordion 
+                           activeUser ={activeUser} 
                             tenant={filtertenant} 
                             onDelete={onDeleteTenant}
                             onUpdate={onUpdateTenant}
@@ -64,7 +68,8 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
                             
                          />   
                     </div>
-                )}   
+                )}  
+            </div>     
              <NewTenantModal 
                 userId ={activeUser.userId} 
                 show={showNewTenantModal} 

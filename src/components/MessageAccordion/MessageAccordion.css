@@ -36,3 +36,6 @@
 .border{
     border-right: solid;
 }
+.bold{
+    font-weight: bolder;
+}

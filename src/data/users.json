@@ -1,32 +1,32 @@
 [
     {
         "id": 1,
-        "name": "Olga Pan",
+        "name": "Donald Trump",
         "apartment": "22",
         "email": "olgap@olgap.com",
         "pwd":  "123",
         "role": true,
-        "img" :"https://images.unsplash.com/photo-1569285645462-a3f9c6332d56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+        "img" :"https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/800px-Donald_Trump_official_portrait.jpg",
         "userId": 1
     },
     {
         "id": 2,
-        "name": "John Doe",
+        "name": "Barack Obama",
         "apartment": "9",
         "email": "john@john.com",
         "pwd":  "123",
         "role": false,
-        "img" :"",
+        "img" :"https://upload.wikimedia.org/wikipedia/commons/c/c4/President_Barack_Obama_%28cropped%29.jpg",
         "userId": 1
     },
     {
         "id": 3,
-        "name": "David Cohen",
+        "name": "Reuven Rivlin",
         "apartment": "1",
         "email": "david@david.com",
         "pwd":  "123",
         "role": false,
-        "img" :"",
+        "img" :"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Reuven_Rivlin_as_the_president_of_Israel.jpg/800px-Reuven_Rivlin_as_the_president_of_Israel.jpg",
         "userId": 1
     }
 ]

@@ -8,7 +8,8 @@ import NewMessageModal from '../../components/NewMessageModal/NewMessageModal';
 import { useState } from 'react';
 
 
-function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMessage, onUpdateMessage, onNewComment}) {
+
+function MessagesPage({users, activeUser, messages, comments, onNewMessage, onDeleteMessage, onUpdateMessage, onNewComment}) {
     const [showNewMessageModal, setShowNewMessageModal] = useState(false);
     const [filter, setFilter] = useState("");
     const [upstutus, setUpStutus] = useState(false);
@@ -17,6 +18,12 @@ function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMes
     if (!activeUser) {
         return <Redirect to="/"/>
     }
+//
+    let location = window.location.href.split('/') ;
+    let href =location[4];
+    let hide=false
+    if(href !=="messages" || activeUser.role===false){hide=true}
+    console.log(href);
 
     function FilterType(event){
         setFilter(event);
@@ -83,9 +90,9 @@ function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMes
   
     return (
         <Container className="p-messages">  
-
-            <div className="heading"> 
-            
+               
+             
+        <div className={"heading " + (hide ? 'hide' : '')}>
                 <input onChange={e => FilterType(e.target.value)} className="form-control rounded" placeholder = "Filter by text in title and details"></input>
                 <div className="title"> 
                     <select  onChange={(e) => FilterType(e.target.value)} className="form-control rounded"> 
@@ -101,21 +108,23 @@ function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMes
                 
                     <div className="form-check">
                         <input  onChange={e => FilterType(e.target.value)} value="createdAt" name="group1" type="radio" className="form-check-input" id="checkDate"/>
-                        <label className="form-check-label" for="checkDate">Date</label>
+                        <label className="form-check-label" htmlFor="checkDate">Date</label>
                     </div>
                     <div className="form-check">
                         <input onChange={e => FilterType(e.target.value)} value="priority" name="group1" type="radio" className="form-check-input" id="checkPriority"/>
-                        <label className="form-check-label" for="checkPriority">Priority</label>
+                        <label className="form-check-label" htmlFor="checkPriority">Priority</label>
                     </div> 
                   
                  </div> 
                  
             </div>
-
-            <Button className="message-button"variant="link" onClick={() => UpdateStutus()}>New Message</Button> 
+            
+            <Button className={"message-button " + (hide ? 'hide' : '')} variant="link" onClick={() => UpdateStutus()}>New Message</Button> 
+            <div className="list">
                     {filtermessages.map(filtermessage => 
                         <div key={filtermessage.id}>
                             <MessageAccordion 
+                                users={users}
                                 activeUser ={activeUser}
                                 message={filtermessage} 
                                 comments={comments}
@@ -128,8 +137,9 @@ function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMes
                             />   
                         </div>
                     )}   
+            </div>
                  <NewMessageModal 
-                    userId ={activeUser.userId} 
+                    activeUser ={activeUser} 
                     show={showNewMessageModal} 
                     onClose={() => setShowNewMessageModal(false)} 
                     onCreate={onNewMessage}
@@ -137,13 +147,6 @@ function MessagesPage({activeUser, messages, comments, onNewMessage, onDeleteMes
                     status ={upstutus}
                     upmessage ={upmessage}
                     />   
-
-
-
-
-      
-
-
         </Container>
     );
 }
