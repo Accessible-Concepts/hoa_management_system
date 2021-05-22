@@ -20,7 +20,7 @@ function MessagesPage({users, activeUser, messages, comments, onNewMessage, onDe
     }
 //
     let location = window.location.href.split('/') ;
-    let href =location[4];
+    let href =location[location.length-1];
     let hide=false
     if(href !=="messages" || activeUser.role===false){hide=true}
     console.log(href);

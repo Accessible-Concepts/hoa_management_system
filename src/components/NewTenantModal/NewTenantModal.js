@@ -15,7 +15,7 @@ function NewTenantModal({userId, show, onClose, onCreate, onUpdate, status, upte
     const [img, setImg] = useState(id ? uptenant.img : avatar);
     
     let location = window.location.href.split('/') ;
-    let href =location[4];
+    let href =location[location.length-1];
     let hide=false
     if(href !=="tenants"){hide=true}
     console.log("NewTenantModal " +href);

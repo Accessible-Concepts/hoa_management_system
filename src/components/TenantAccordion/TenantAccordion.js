@@ -6,7 +6,7 @@ import avatar from '../../img/avatar.png'
 function TenantAccordion({activeUser, tenant, onDelete, onUpdate, show, Stutus, uptenant}) {
 
     let location = window.location.href.split('/') ;
-    let href =location[4];
+    let href =location[location.length-1];
     let hide=false
     if(href !=="tenants" || activeUser.role===false){hide=true}
     console.log(href);

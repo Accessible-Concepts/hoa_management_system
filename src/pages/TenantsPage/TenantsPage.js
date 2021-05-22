@@ -14,7 +14,7 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
     const [uptenant, setUptenants] = useState();
 
     let location = window.location.href.split('/') ;
-    let href =location[4];
+    let href =location[location.length-1];
     let hide=false
     if(href !=="tenants"){hide=true}
     if(activeUser){

@@ -12,7 +12,7 @@ function MessageAccordion({users, activeUser, message, comments,  onDelete, onUp
     const [newcomment, setNewcomment] = useState("");
 
     let location = window.location.href.split('/') ;
-    let href =location[4];
+    let href =location[location.length-1];
     let hide=false
     if(href !=="messages" || activeUser.role===false){hide=true}
     console.log(href);
