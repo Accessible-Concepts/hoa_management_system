@@ -16,7 +16,12 @@ function TenantsPage({activeUser, tenants, onNewTenant, onDeleteTenant, onUpdate
     let location = window.location.href.split('/') ;
     let href =location[4];
     let hide=false
-    if(href !=="tenants" || activeUser.role===false){hide=true}
+    if(href !=="tenants"){hide=true}
+    if(activeUser){
+        if(activeUser.role===false){hide=true}
+    }
+     
+    if(activeUser && activeUser.role===false){hide=true}
     console.log(href);
 
     if (!activeUser) {

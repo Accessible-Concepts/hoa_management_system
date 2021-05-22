@@ -93,9 +93,9 @@ function MessagesPage({users, activeUser, messages, comments, onNewMessage, onDe
                
              
         <div className={"heading " + (hide ? 'hide' : '')}>
-                <input onChange={e => FilterType(e.target.value)} className="form-control rounded" placeholder = "Filter by text in title and details"></input>
+                <input onChange={e => FilterType(e.target.value)} style={{width: "70%", marginLeft: "10px"}} className="form-control rounded" placeholder = "Filter by text in title and details"></input>
                 <div className="title"> 
-                    <select  onChange={(e) => FilterType(e.target.value)} className="form-control rounded"> 
+                    <select  onChange={(e) => FilterType(e.target.value)} style={{width: "70%", marginLeft: "10px"}} className="form-control rounded"> 
                         <option value="-1">Filter by priority</option>         
                         <option value="0">Important</option>
                         <option value="1">Information</option>
